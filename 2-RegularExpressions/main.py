@@ -2,6 +2,13 @@ from pprint import pprint
 import re
 # читаем адресную книгу в формате CSV в список contacts_list
 import csv
+def update_phone(phone):
+  pattern = r'(\+7|8)\s*\(*(\d{3})\(*\s*\)*\-*\s*(\d{3})\s*\-*(\d{2})\s*\-*(\d{2})\s*\(*(\w*\.*)\s*(\d+)*'
+  subs = r'+7(\2)\3-\4-\5 \6\7'
+  result = re.sub(pattern, subs, phone)
+  return result
+
+
 with open("phonebook_raw.csv", encoding="utf-8") as f:
   rows = csv.reader(f, delimiter=",")
   contacts_list = list(rows)
@@ -20,14 +27,6 @@ with open("phonebook_raw.csv", encoding="utf-8") as f:
     print(person)
 
 
-def update_phone(phone):
-  pattern = r'(\+7|8)\s*\(*(\d{3})\(*\s*\)*\-*\s*(\d{3})\s*\-*(\d{2})\s*\-*(\d{2})\s*\(*(\w*\.*)\s*(\d+)*'
-  subs = r'+7(\2)\3-\4-\5 \6\7'
-  result = re.sub(pattern, subs, phone)
-  return result
-
-
-print(update_phone(p))
 
 # TODO 1: выполните пункты 1-3 ДЗ
 # ваш код
