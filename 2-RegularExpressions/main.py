@@ -14,6 +14,7 @@ with open("phonebook_raw.csv", encoding="utf-8") as f:
   contacts_list = list(rows)
   person_list = []
   table_name = contacts_list[:1]
+
   for info in contacts_list[1:]:
     person = []
     for indx, i in enumerate(info[:3]):
