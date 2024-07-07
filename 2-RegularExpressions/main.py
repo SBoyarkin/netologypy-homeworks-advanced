@@ -37,7 +37,7 @@ if __name__ == '__main__':
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
     person_list = contacts_list[:1]
-    person_list += struct_person(contacts_list[3:])
+    person_list += struct_person(contacts_list[2:])
 
 
 
