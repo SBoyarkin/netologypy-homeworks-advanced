@@ -36,8 +36,8 @@ if __name__ == '__main__':
   with open("phonebook_raw.csv", encoding="utf-8") as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
-    table_name = contacts_list[:1]
-    person_list = struct_person(contacts_list[3:])
+    person_list = contacts_list[:1]
+    person_list += struct_person(contacts_list[3:])
 
 
 
