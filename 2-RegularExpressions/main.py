@@ -8,29 +8,40 @@ def update_phone(phone):
   result = re.sub(pattern, subs, phone)
   return result
 
-
-with open("phonebook_raw.csv", encoding="utf-8") as f:
-  rows = csv.reader(f, delimiter=",")
-  contacts_list = list(rows)
+def struct_person(list):
   person_list = []
-  table_name = contacts_list[:1]
-
-  for info in contacts_list[1:]:
+  for info in list:
     person = []
-    for indx, i in enumerate(info[:3]):
+    for i in info[:3]:
       information = i.split(' ')
       if len(information[0]) == 0:
         continue
       else:
         person += information
+    if len(person) != 3:
+      person.append('')
     for i in info[3:]:
       i = update_phone(i).strip(' ')
       person.append(i)
     print(len(person))
     person_list.append(person)
+  return person_list
 
 
-print()
+
+
+
+
+if __name__ == '__main__':
+  with open("phonebook_raw.csv", encoding="utf-8") as f:
+    rows = csv.reader(f, delimiter=",")
+    contacts_list = list(rows)
+    table_name = contacts_list[:1]
+    person_list = struct_person(contacts_list[3:])
+
+
+
+
 # TODO 1: выполните пункты 1-3 ДЗ
 # ваш код
 
