@@ -23,11 +23,26 @@ def struct_person(list):
     for i in info[3:]:
       i = update_phone(i).strip(' ')
       person.append(i)
-    print(len(person))
     person_list.append(person)
   return person_list
 
-
+def remove_dublicates(person_list):
+  result = []
+  while True:
+    popped = person_list.pop()
+    result.append(popped)
+    for i in person_list:
+      if popped[0] and popped[1] in i:
+        print('это поппед',popped)
+        print("это и",i)
+        for indx, data in enumerate(popped):
+          if data:
+            continue
+          else:
+            popped[indx] = i[indx]
+        result[-1] = popped
+    if len(person_list) == 0:
+      return result
 
 
 
@@ -36,8 +51,9 @@ if __name__ == '__main__':
   with open("phonebook_raw.csv", encoding="utf-8") as f:
     rows = csv.reader(f, delimiter=",")
     contacts_list = list(rows)
-    person_list = contacts_list[:1]
-    person_list += struct_person(contacts_list[2:])
+    table_name = contacts_list[:1]
+    intermediate_data = struct_person(contacts_list[1:])
+    person_list = remove_dublicates(intermediate_data)
 
 
 
